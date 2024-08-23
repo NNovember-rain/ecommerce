@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Change Password</title>
+</head>
+<body>
+<h2>Change Password</h2>
+<form th:action="@{/changepass}" th:object="${user}" method="post">
+
+    <div>
+        <label for="currentPassword">Current Password:</label>
+        <input type="password" th:field="*{currentPassword}" id="currentPassword" />
+        <div>
+            <label th:if="${#fields.hasErrors('currentPassword')}" th:errors="*{currentPassword}"></label>
+            <div th:if="${passwordWrong}">Wrong Passwords!</div>
+        </div>
+    </div>
+
+    <div>
+        <label for="password">New Password:</label>
+        <input type="password" th:field="*{password}" id="password" />
+        <div>
+            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
+            <div th:if="${specialWord}">Minimum 8 characters and at least 1 capital letter and 1 special character!</div>
+        </div>
+    </div>
+
+    <div>
+        <label for="Repassword">Repeat New Password:</label>
+        <input type="password" th:field="*{rePassword}" id="Repassword" />
+        <div>
+            <label th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}"></label>
+            <div th:if="${passwordMatch}">Passwords do not match!</div>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit">Register</button>
+    </div>
+
+</form>
+</body>
+</html>

@@ -5,22 +5,46 @@
 </head>
 <body>
 <h2>Register</h2>
-<form th:action="@{/register}" th:object="${customer}" method="post">
+<form th:action="@{/register}" th:object="${user}" method="post">
+
     <div>
-        <label>Username:</label>
-        <input type="text" th:field="*{username}" />
+        <label for="name">Full Name:</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Enter Fullname" />
+        <div>
+            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
+        </div>
     </div>
+
     <div>
-        <label>Password:</label>
-        <input type="password" th:field="*{password}" />
+        <label for="email">Email:</label>
+        <input type="text" th:field="*{email}" id="email" placeholder="Enter Email" />
+        <div>
+            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+            <div th:if="${emailExist}">Email existed, please try another email!!</div>
+        </div>
     </div>
+
     <div>
-        <label>Email:</label>
-        <input type="email" th:field="*{email}" />
+        <label for="password">Password:</label>
+        <input type="password" th:field="*{password}" id="password" placeholder="Enter password" />
+        <div>
+            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
+        </div>
     </div>
+
+    <div>
+        <label for="Repassword">Repeat Password:</label>
+        <input type="password" th:field="*{rePassword}" id="Repassword" placeholder="Repassword" />
+        <div>
+            <label th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}"></label>
+            <div th:if="${passwordMatch}">Passwords do not match!</div>
+        </div>
+    </div>
+
     <div>
         <button type="submit">Register</button>
     </div>
+
 </form>
 </body>
 </html>

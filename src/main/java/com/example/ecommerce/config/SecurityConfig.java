@@ -1,6 +1,6 @@
 package com.example.ecommerce.config;
 
-import com.example.ecommerce.service.CustomerService;
+import com.example.ecommerce.service.impl.userDetailServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,21 +16,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     @Lazy
-    private CustomerService customerService;
+    private userDetailServiceimpl userDetailServiceimpl;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customerService).passwordEncoder(passwordEncoder());
+        auth
+                .userDetailsService(userDetailServiceimpl)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login", "/register").permitAll()
+                .antMatchers("/login", "/register","/forgot/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .usernameParameter("Email")
+                .passwordParameter("Password")
                 .defaultSuccessUrl("/home", true)
                 .permitAll()
                 .and()

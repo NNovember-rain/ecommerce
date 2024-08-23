@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Forgot Password - Enter Account</title>
+</head>
+<body>
+
+<h1>Enter your account!</h1>
+
+<!-- Form nhập tài khoản -->
+<form th:action="@{/forgot/verifyaccount}" th:object="${user}" method="post">
+    <div>
+        <label for="email">Email:</label>
+        <input type="text" th:field="*{email}" id="email" placeholder="Enter Email" />
+        <div th:if="${emailNotExist}">Email is not exist!</div>
+    </div>
+    <button type="submit">Verify</button>
+</form>
+
+</body>
+</html>
