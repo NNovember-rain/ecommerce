@@ -20,7 +20,5 @@ public class UserRegisterDTO {
     @NotBlank(message = "Remind password is require !")
     private String rePassword;
 
-    @NotBlank(message = "Current Password is require !")
-    private String currentPassword;
 
 }

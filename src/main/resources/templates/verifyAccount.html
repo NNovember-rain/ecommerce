@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Forgot Password - Enter Account</title>
+    <style>
+        .text-danger{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
@@ -12,7 +17,7 @@
     <div>
         <label for="email">Email:</label>
         <input type="text" th:field="*{email}" id="email" placeholder="Enter Email" />
-        <div th:if="${emailNotExist}">Email is not exist!</div>
+        <div th:if="${emailNotExist}" class="text-danger">Email is not exist!</div>
     </div>
     <button type="submit">Verify</button>
 </form>

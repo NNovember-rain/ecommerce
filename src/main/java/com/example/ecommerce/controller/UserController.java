@@ -74,7 +74,7 @@ public class UserController {
 
     @GetMapping("/changepass")
     public String changePassword(Model model) {
-        model.addAttribute("user", new UserRegisterDTO());
+        model.addAttribute("user", new UserPasswordDTO());
         return "changepass";
     }
 

@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Register</title>
+    <style>
+        .text-danger{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <h2>Register</h2>
@@ -11,7 +16,7 @@
         <label for="name">Full Name:</label>
         <input type="text" th:field="*{name}" id="name" placeholder="Enter Fullname" />
         <div>
-            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
+            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></label>
         </div>
     </div>
 
@@ -19,8 +24,8 @@
         <label for="email">Email:</label>
         <input type="text" th:field="*{email}" id="email" placeholder="Enter Email" />
         <div>
-            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
-            <div th:if="${emailExist}">Email existed, please try another email!!</div>
+            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></label>
+            <div th:if="${emailExist}" class="text-danger">Email existed, please try another email!!</div>
         </div>
     </div>
 
@@ -28,7 +33,7 @@
         <label for="password">Password:</label>
         <input type="password" th:field="*{password}" id="password" placeholder="Enter password" />
         <div>
-            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
+            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></label>
         </div>
     </div>
 
@@ -36,8 +41,8 @@
         <label for="Repassword">Repeat Password:</label>
         <input type="password" th:field="*{rePassword}" id="Repassword" placeholder="Repassword" />
         <div>
-            <label th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}"></label>
-            <div th:if="${passwordMatch}">Passwords do not match!</div>
+            <label th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}" class="text-danger"></label>
+            <div th:if="${passwordMatch}" class="text-danger">Passwords do not match!</div>
         </div>
     </div>
 
